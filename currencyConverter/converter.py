@@ -15,9 +15,12 @@ def find_rate(from_currency, to_currency):
         return RATES[direct]
     elif inverted in RATES:
         return 1 / RATES[inverted]
-    else:        
-        x = np.where(indxArray == from_currency)[0][0]
-        y = np.where(indxArray == to_currency)[0][0]
+    else:
+        try:
+            x = np.where(indxArray == from_currency)[0][0]
+            y = np.where(indxArray == to_currency)[0][0]
+        except:
+            return None
         mapped_cur = crossCurrencyMat[x][y]
         rate_fcmc = find_rate(from_currency,mapped_cur)
         ratem_mctc = find_rate(mapped_cur,to_currency)

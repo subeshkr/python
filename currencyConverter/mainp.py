@@ -11,7 +11,10 @@ def main():
     args = parser.parse_args()
 
     result = convert(args.amount, args.from_currency.upper(), args.to_currency.upper())
-    print(f"{args.from_currency.upper()} {args.amount} = {args.to_currency.upper()} {result}")
+    if result != "Unable to find rate":
+        print(f"{args.from_currency.upper()} {args.amount} = {args.to_currency.upper()} {result}")
+    else:
+        print(f"{result} for {args.from_currency.upper()}/{args.to_currency.upper()}")
 
 if __name__ == "__main__":
     main()
